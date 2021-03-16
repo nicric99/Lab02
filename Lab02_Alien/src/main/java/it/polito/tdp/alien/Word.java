@@ -35,6 +35,16 @@ public class Word {
 		return b;}
 
 	}
+	public boolean equals(String s) {
+		boolean b=false;
+		if(s.equals(this.alienWord)) {
+			b=true;
+			return b;
+		}
+		else {
+		return b;}
+		
+	}
 	public String toString() {
 		return "AlienWord "+ this.alienWord + " Translation " + this.translation;
 	}

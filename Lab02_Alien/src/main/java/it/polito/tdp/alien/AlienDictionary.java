@@ -32,6 +32,18 @@ public void clearWord(Word p) {
 		}
 	}
 }
+public String translateWord(String alienWord) {
+	for (Word v:this.dizionario) {
+		if(v.getAlienWord().equals(alienWord)) {
+		return v.getTranslation();
+		}
+	}
+	return(" Parola non ancora inserita ");
+}
+public void cancellaTutto() {
+		dizionario.clear();
+	
+}
 @Override
 public String toString() {
 	// posso direttamente chiamare il metodo to string della lista che è già implementata

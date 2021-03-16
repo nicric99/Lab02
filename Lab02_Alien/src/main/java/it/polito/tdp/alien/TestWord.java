@@ -16,6 +16,10 @@ public class TestWord {
 		System.out.println(dizionario.toString());
 		dizionario.clearWord(pi);
 		System.out.println(dizionario.toString());
+		
+		System.out.println("Traduzione "+dizionario.translateWord("aba"));
+		System.out.println(dizionario.esisteParola(pi));
+		
 	
 	}
 }
