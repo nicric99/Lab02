@@ -3,7 +3,7 @@ package it.polito.tdp.alien;
 import java.util.*;
 
 
-public class AlienDictionary {
+public class AlienDictionary  {
 	private List<Word> dizionario;
 //	private Map<String,Word> dizionario;
 
@@ -13,6 +13,9 @@ public class AlienDictionary {
 	public void addWord(String alienWord,String translation) {
 		Word parola= new Word(alienWord,translation);
 		dizionario.add(parola);
+	}
+	public void addWord(Word p) {
+		dizionario.add(p);
 	}
 public boolean esisteParola(Word p) {
 		boolean trovato=false;
@@ -32,6 +35,19 @@ public void clearWord(Word p) {
 		}
 	}
 }
+public Word multipleTranslation(Word v) {
+	Word s= new Word(" ciao","ciao ");
+	for(Word p:dizionario) {
+		if(p.equals(v)) {
+			p.addWord((v.getTranslation()));
+			return p;
+		}
+	
+		
+	}
+	return s;
+	}
+	
 public String translateWord(String alienWord) {
 	for (Word v:this.dizionario) {
 		if(v.getAlienWord().equals(alienWord)) {

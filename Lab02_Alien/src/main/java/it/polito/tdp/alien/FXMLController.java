@@ -28,67 +28,65 @@ AlienDictionary dizionario= new AlienDictionary();
     private TextArea txtResult;
 
 
-    @FXML
-    private Button btnTranslate;
+	@FXML
+	private Button btnTranslate;
 
-    @FXML
-    private Button btnReset;
+	@FXML
+	private Button btnReset;
 
-    @FXML
-    void doReset(ActionEvent event) {
-    		dizionario.cancellaTutto();
-    		txtResult.setText("Dizionario cancellato ");
-    	 }
+	@FXML
+	void doReset(ActionEvent event) {
+		dizionario.cancellaTutto();
+		txtResult.setText("Dizionario cancellato ");
+	}
 
-    @FXML
-    void doTranslate(ActionEvent event) {
-    	String stringa= txtWord.getText();
-    	
-    	
-    	if(stringa.isEmpty()) {
-    		txtResult.setText("Riga non valida");
-    		return;
-    	}
-    	
-    	if(stringa.contains(" ")){
-    		stringa.toLowerCase();
-        	String[] parts = stringa.split(" ");
-        	String part1 = parts[0]; 
-        	String part2 = parts[1];
-        	if(part1.matches("^[a-zA-Z]*$") && part2.matches("^[a-zA-Z]*$")) {
-        	txtResult.setText(part1+part2);
-        	Word parola= new Word(part1, part2);
-        	if(dizionario.esisteParola(parola)){
-        		txtResult.setText("Esiste");
-        		}
-        	else {
-        	dizionario.addWord(part1, part2);
-        	txtResult.setText(dizionario.toString());
-        	}
-        }
-        	else {
-        		txtResult.setText("Parola scritta male");
-        	}
-    	}
-    	else {
-    		 if(stringa.matches("^[a-zA-Z]*$")) {
-    			 stringa.toLowerCase();
-    			 txtResult.setText("La traduzione è : "+dizionario.translateWord(stringa));
-    		 }
-    		 else {
-    			 txtResult.setText("Parola scritta male ");
-    		 }
-    		
-    	}
-   }
-    	
+	@FXML
+	void doTranslate(ActionEvent event) {
+		String stringa = txtWord.getText();
 
-    @FXML
-    void initialize() {
-        assert btnTranslate != null : "fx:id=\"btnTranslate\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert txtWord != null : "fx:id=\"txtWord\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
+		if (stringa.isEmpty()) {
+			txtResult.setText("Riga non valida");
+			return;
+		}
 
-    }
+		if (stringa.contains(" ")) {
+			stringa.toLowerCase();
+			String[] parts = stringa.split(" ");
+			String part1 = parts[0];
+			String part2 = parts[1];
+			if (part1.matches("^[a-zA-Z]*$") && part2.matches("^[a-zA-Z]*$")) {
+				txtResult.setText(part1 + part2);
+				Word parola = new Word(part1, part2);
+				if (dizionario.esisteParola(parola)) {
+					txtResult.setText("Esiste e verrà aggiunta come tradzione ");
+					dizionario.addWord(part1, part2);
+					Word trovata=dizionario.multipleTranslation(parola);
+					txtResult.setText(trovata.traduzioni.toString());
+				} else {
+					dizionario.addWord(parola);
+					parola.addWord(part2);
+					txtResult.setText(dizionario.toString());
+				}
+			} else {
+				txtResult.setText("Parola scritta male");
+			}
+		} else {
+			if (stringa.matches("^[a-zA-Z]*$")) {
+				stringa.toLowerCase();
+				txtResult.setText("La traduzione è : " + dizionario.translateWord(stringa));
+			} else {
+				txtResult.setText("Parola scritta male ");
+			}
+
+		}
+	}
+
+	@FXML
+	void initialize() {
+		assert btnTranslate != null : "fx:id=\"btnTranslate\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert txtWord != null : "fx:id=\"txtWord\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
+
+	}
 }
