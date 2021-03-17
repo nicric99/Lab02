@@ -61,7 +61,7 @@ AlienDictionary dizionario= new AlienDictionary();
 					txtResult.setText("Esiste e verrà aggiunta come tradzione ");
 					dizionario.addWord(part1, part2);
 					Word trovata=dizionario.multipleTranslation(parola);
-					txtResult.setText(trovata.traduzioni.toString());
+					txtResult.setText("Le varie traduzioni di "+ part1+" sono "+trovata.traduzioni.toString());
 				} else {
 					dizionario.addWord(parola);
 					parola.addWord(part2);

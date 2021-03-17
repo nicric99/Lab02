@@ -1,10 +1,13 @@
 package it.polito.tdp.alien;
 import java.util.*;
 
+
+
 public class Word {
 	private String alienWord;
 	private String translation;
-	HashMap<String,String> traduzioni= new HashMap<String,String>();
+	//HashMap<String,String> traduzioni= new HashMap<String,String>()
+	ArrayList<String> traduzioni= new ArrayList<String>();
 
 	public Word(String alienWord, String translation) {
 		this.alienWord = alienWord;
@@ -28,7 +31,7 @@ public class Word {
 		this.translation = translation;
 	}
 	public void addWord(String s) {
-		this.traduzioni.put(s,this.alienWord);
+		this.traduzioni.add(s);
 	}
 	/*public String getTraduzioni(HashMap<String, String> traduzione) {
 		for (Entry<Integer, String> entry : testMap.entrySet()) {
@@ -37,9 +40,9 @@ public class Word {
     }
 	}}*/
 
-	public void setTraduzioni(HashMap<String, String> traduzioni) {
+	/*public void setTraduzioni(HashMap<String, String> traduzioni) {
 		this.traduzioni = traduzioni;
-	}
+	}*/
 
 	public boolean equals(Word s) {
 		boolean b=false;
@@ -64,6 +67,9 @@ public class Word {
 	public String toString() {
 		return "AlienWord "+ this.alienWord + " Translation " + this.translation;
 	}
-	//public String to
+	/*public String stringTraduzioni() {
+		for(String s:traduzioni)
+		
+	}*/
 
 }
