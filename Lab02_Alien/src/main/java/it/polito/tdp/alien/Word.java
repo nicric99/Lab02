@@ -64,5 +64,6 @@ public class Word {
 	public String toString() {
 		return "AlienWord "+ this.alienWord + " Translation " + this.translation;
 	}
+	//public String to
 
 }
